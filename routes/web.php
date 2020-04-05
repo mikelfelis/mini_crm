@@ -20,3 +20,14 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/admin/', function () {
+    if (Auth::check()) {
+        return view('admin');
+    }
+    return redirect('/login');
+
+});
+
+Route::get('/users', 'UsersController@index');
+Route::post('/users', 'UsersController@create');
