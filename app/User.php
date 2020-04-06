@@ -36,4 +36,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function adminlte_image()
+    {
+        return 'https://i.picsum.photos/id/1066/2144/1424.jpg';
+    }
+
+    public static function adminlte_desc()
+    {
+        return 'Just a cute baby.';
+    }
 }
