@@ -24,7 +24,7 @@ class CreateEmployeesTable extends Migration
         });
 
         Schema::table('employees', function (Blueprint $table) {
-            $table->foreign('company_id')->references('id')->on('companies');
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
         });
     }
 

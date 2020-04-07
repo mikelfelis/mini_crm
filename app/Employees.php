@@ -13,4 +13,9 @@ class Employees extends Model
         'email',
         'phone'
     ];
+
+    public function company()
+    {
+        return $this->belongsTo('App\Companies', 'company_id', 'id');
+    }
 }

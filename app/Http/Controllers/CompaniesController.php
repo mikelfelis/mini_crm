@@ -14,7 +14,7 @@ class CompaniesController extends Controller
      */
     public function index()
     {
-        $companies = Companies::all();
+        $companies = Companies::paginate(10);
         return view('admin.company.index', compact('companies'));
     }
 
@@ -70,7 +70,8 @@ class CompaniesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $company = Companies::find($id);
+        return view('admin.company.edit', compact('company'));
     }
 
     /**
@@ -82,7 +83,17 @@ class CompaniesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required'
+        ]);
+
+        $company = Companies::find($id);
+        $company->name = $request->get('name');
+        $company->address = $request->get('address');
+        $company->website = $request->get('website');
+        $company->save();
+        return redirect('/admin/companies')->with('success', 'Company is now updated.');
     }
 
     /**
@@ -93,6 +104,8 @@ class CompaniesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $company = Companies::find($id);
+        $company->delete();
+        return redirect('/admin/companies')->with('success', $company->name . ' was successfully deleted.');
     }
 }
