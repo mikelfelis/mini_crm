@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Companies;
-use App\LogActivity;
+use App\Helpers\LogActivity;
 use Notification;
 use App\Notifications\NewCompanyNotification;
 use Illuminate\Support\Facades\Auth;
@@ -62,8 +62,8 @@ class CompaniesController extends Controller
             'from' => $user->email
         ];
   
-        Notification::send($user, new NewCompanyNotification($details));
-        \LogActivity::addToLog('Added new company');
+        // Notification::send($user, new NewCompanyNotification($details));
+        LogActivity::addToLog('Added new company');
         return redirect('/admin/companies')->with('success', 'New company is saved');
     }
 
@@ -109,7 +109,7 @@ class CompaniesController extends Controller
         $company->address = $request->get('address');
         $company->website = $request->get('website');
         $company->save();
-        \LogActivity::addToLog('Updated a company');
+        LogActivity::addToLog('Updated a company');
         return redirect('/admin/companies')->with('success', 'Company is now updated.');
     }
 
@@ -123,7 +123,7 @@ class CompaniesController extends Controller
     {
         $company = Companies::find($id);
         $company->delete();
-        \LogActivity::addToLog('Deleted a company');
+        LogActivity::addToLog('Deleted a company');
         return redirect('/admin/companies')->with('success', $company->name . ' was successfully deleted.');
     }
 }

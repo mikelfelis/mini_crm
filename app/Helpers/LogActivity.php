@@ -17,7 +17,8 @@ class LogActivity
     	$log['method'] = Request::method();
     	$log['ip'] = Request::ip();
     	$log['agent'] = Request::header('user-agent');
-    	$log['user_id'] = Auth()::check() ? Auth()::user()->id : 1;
+		// $log['user_id'] = Auth()::check() ? Auth()::user()->id : 1;
+		$log['user_id'] = auth()->check() ? auth()->user()->id : 1;
     	LogActivityModel::create($log);
     }
 

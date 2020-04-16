@@ -55,8 +55,8 @@
                 </div>
 
 
-                <button type="submit" class="btn btn-sm btn-primary">Add</button>
-                <a href="{{ route('employees.index') }}" type="button" class="btn btn-default">Cancel</a>
+                <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                <a href="{{ route('employees.index') }}" type="button" class="btn btn-sm btn-default">Cancel</a>
             </form>
         <div>
     </div>

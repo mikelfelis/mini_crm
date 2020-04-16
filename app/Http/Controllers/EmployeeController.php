@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Employees;
 use App\Companies;
+use App\Helpers\LogActivity;
 
 class EmployeeController extends Controller
 {
@@ -54,7 +55,7 @@ class EmployeeController extends Controller
         ]);
 
         $employee->save();
-        \LogActivity::addToLog('New employee is added');
+        LogActivity::addToLog('New employee is added');
         return redirect('/admin/employees')->with('success', 'New employee is saved');
     }
 
@@ -108,7 +109,7 @@ class EmployeeController extends Controller
         $employee->email = $request->get('email');
         $employee->phone = $request->get('phone');
         $employee->save();
-        \LogActivity::addToLog('Updated an employee');
+        LogActivity::addToLog('Updated an employee');
         return redirect('/admin/employees')->with('success', 'Employee is now updated.');
     }
 
@@ -122,7 +123,7 @@ class EmployeeController extends Controller
     {
         $employee = Employees::find($id);
         $employee->delete();
-        \LogActivity::addToLog('Deleted an employee');
+        LogActivity::addToLog('Deleted an employee');
         return redirect('/admin/employees')->with('success', $employee->firstname . ' ' . $employee->lastname . ' was successfully deleted.');
     }
 }

@@ -40,7 +40,7 @@
                     <input type="text" class="form-control" name="website" value="{{ $company->website }}"/>
                 </div>
 
-                <button type="submit" class="btn btn-sm btn-primary">Add</button>
+                <button type="submit" class="btn btn-sm btn-primary">Save</button>
                 <a href="{{ route('companies.index') }}" type="button" class="btn btn-default">Cancel</a>
             </form>
         <div>
