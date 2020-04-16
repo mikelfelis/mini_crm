@@ -54,6 +54,7 @@ class EmployeeController extends Controller
         ]);
 
         $employee->save();
+        \LogActivity::addToLog('New employee is added');
         return redirect('/admin/employees')->with('success', 'New employee is saved');
     }
 
@@ -81,7 +82,6 @@ class EmployeeController extends Controller
         $selectedID = $employee->company_id;
 
         $companies = Companies::pluck('name', 'id');
-
         return view('admin.employee.edit', compact('selectedID', 'employee', 'companies'));
     }
 
@@ -108,6 +108,7 @@ class EmployeeController extends Controller
         $employee->email = $request->get('email');
         $employee->phone = $request->get('phone');
         $employee->save();
+        \LogActivity::addToLog('Updated an employee');
         return redirect('/admin/employees')->with('success', 'Employee is now updated.');
     }
 
@@ -121,6 +122,7 @@ class EmployeeController extends Controller
     {
         $employee = Employees::find($id);
         $employee->delete();
+        \LogActivity::addToLog('Deleted an employee');
         return redirect('/admin/employees')->with('success', $employee->firstname . ' ' . $employee->lastname . ' was successfully deleted.');
     }
 }
