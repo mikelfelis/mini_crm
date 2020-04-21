@@ -6,8 +6,8 @@
 
     </head>
     <body>
-        <a href="/login/facebook">
-            Log In With Facebook
+        <a href="/login/github">
+            Log In With GitHub
         </a>
     </body>
 </html>
