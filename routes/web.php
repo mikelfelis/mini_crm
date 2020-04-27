@@ -17,14 +17,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middleware('is_admin');
 
-// Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
-// Route::get('/callback/{provider}', 'SocialController@callback');
+Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
+Route::get('/callback/{provider}', 'SocialController@callback');
 
-Route::get('login/{provider}', 'SocialController@redirect');
-Route::get('login/{provider}/callback','SocialController@Callback');
+Route::get('{any}', function () {
+    return view('admin/home');
+})->where('any', '.*');

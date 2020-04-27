@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Socialite;
 use App\User;
 use Auth;
@@ -15,42 +16,30 @@ class SocialController extends Controller
 
     public function callback($provider)
     {
-        $userSocial = Socialite::driver($provider)->stateless()->user();
-        $users = User::where(['email' => $userSocial->getEmail()])->first();
+        $getInfo = Socialite::driver($provider)->user();
+        $user = User::where('provider_id', $getInfo->id)->first();
 
-        if ($users)
+        if (!$user)
         {
-            Auth::login($users);
-            return redirect('/');
+            $user = User::create([
+                'name' => $getInfo->getName(),
+                'email' => $getInfo->getEmail(),
+                'provider' => $provider,
+                'provider_id' => $getInfo->getId(),
+                'password' => '',
+                'image' => $getInfo->getAvatar()
+            ]);
+        }
+
+        Auth::login($user);
+
+        if ($user->is_admin == 1)
+        {
+            return redirect()->to('admin/home');
         }
         else
         {
-            $user = User::create([
-                'name'          => $userSocial->getName(),
-                'email'         => $userSocial->getEmail(),
-                'image'         => $userSocial->getAvatar(),
-                'provider_id'   => $userSocial->getId(),
-                'provider'      => $provider,
-            ]);
-
-            return redirect()->route('home');
+            return redirect()->to('/home');
         }
     }
-
-    // public function createUser()
-    // {
-    //     $user = User::where('provider_id', $getInfo->id)->first();
-
-    //     if (!$user)
-    //     {
-    //         $user = User::create([
-    //             'name' => $getInfo->name,
-    //             'email' => $getInfo->email,
-    //             'provider' => $provider,
-    //             'provider_id' => $getInfo->id
-    //         ]);
-
-    //         return $user;
-    //     }
-    // }
 }

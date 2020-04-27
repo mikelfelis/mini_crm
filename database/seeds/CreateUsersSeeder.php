@@ -19,12 +19,18 @@ class CreateUsersSeeder extends Seeder
                 'email' => 'admin@admin.com',
                 'is_admin' => '1',
                 'password' => Hash::make('password'),
+                'provider' => '',
+                'provider_id' => '',
+                'image' => ''
             ],
             [
                 'name' => 'jared_euler',
                 'email' => 'jared_euler@eulersoftcorp.com',
                 'is_admin' => '0',
                 'password' => Hash::make('password'),
+                'provider' => '',
+                'provider_id' => '',
+                'image' => ''
             ]
         ];
   
