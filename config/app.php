@@ -165,7 +165,11 @@ return [
         /*
          * Package Service Providers...
          */
+<<<<<<< HEAD
         Laravel\Socialite\SocialiteServiceProvider::class,
+=======
+
+>>>>>>> 15a10f0a9162546ce1e0e7d1195aadcffb9eafa3
         /*
          * Application Service Providers...
          */
@@ -226,7 +230,11 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+<<<<<<< HEAD
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+=======
+        'LogActivity' => App\Helpers\LogActivity::class
+>>>>>>> 15a10f0a9162546ce1e0e7d1195aadcffb9eafa3
     ],
 
 ];

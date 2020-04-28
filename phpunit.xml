@@ -2,8 +2,12 @@
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
          bootstrap="vendor/autoload.php"
+<<<<<<< HEAD
          colors="true"
 >
+=======
+         colors="true">
+>>>>>>> 15a10f0a9162546ce1e0e7d1195aadcffb9eafa3
     <testsuites>
         <testsuite name="Unit">
             <directory suffix="Test.php">./tests/Unit</directory>
@@ -26,6 +30,9 @@
         <server name="MAIL_MAILER" value="array"/>
         <server name="QUEUE_CONNECTION" value="sync"/>
         <server name="SESSION_DRIVER" value="array"/>
+<<<<<<< HEAD
         <server name="TELESCOPE_ENABLED" value="false"/>
+=======
+>>>>>>> 15a10f0a9162546ce1e0e7d1195aadcffb9eafa3
     </php>
 </phpunit>

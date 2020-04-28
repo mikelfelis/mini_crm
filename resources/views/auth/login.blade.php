@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @extends('layouts.app')
 
 @section('content')
@@ -78,3 +79,6 @@
     </div>
 </div>
 @endsection
+=======
+@extends('adminlte::login')
+>>>>>>> 15a10f0a9162546ce1e0e7d1195aadcffb9eafa3
